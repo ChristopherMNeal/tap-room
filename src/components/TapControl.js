@@ -1,13 +1,14 @@
 import React from "react";
 import TapList from "./TapList";
 import TapDetails from "./TapDetails";
-// import NewTapForm from "./NewTapForm";
+import NewTapForm from "./NewTapForm";
 // import EditTapForm from "./EditTapForm";
 
 export class TapControl extends React.Component {
   constructor() {
     super();
     this.state = {
+      formVisibleOnPage: false,
       mainTapList: [
         {
           name: "Conclusions",
@@ -25,12 +26,29 @@ export class TapControl extends React.Component {
     };
   }
 
+  handleAddItemClick = () => {
+    this.setState(() => ({
+      formVisibleOnPage: true,
+      selectedTap: null,
+    }));
+  };
+
   handleButtonClick = () => {
     if (this.state.selectedTap !== null) {
       this.setState(() => ({
+        formVisibleOnPage: false,
         selectedTap: null,
       }));
     }
+  };
+
+  handleAddingNewTapToList = (newTap) => {
+    const newMainTapList = this.state.mainTapList.concat(newTap);
+    this.setState({
+      mainTapList: newMainTapList,
+      // // show new tap details after creation? or show what?
+      // selectedTap: newTap,
+    });
   };
 
   handleChangingSelectedTap = (id) => {
@@ -43,10 +61,14 @@ export class TapControl extends React.Component {
   render() {
     const currentTapList = this.state.mainTapList;
     let currentlyVisibleState = null;
-    let buttonText = null;
+    let descriptionButtonText = null;
     if (this.state.selectedTap !== null) {
       currentlyVisibleState = <TapDetails tap={this.state.selectedTap} />;
-      buttonText = "Hide details";
+      descriptionButtonText = "Hide details";
+    } else if (this.state.formVisibleOnPage) {
+      currentlyVisibleState = (
+        <NewTapForm onNewTapCreation={this.handleAddingNewTapToList} />
+      );
     }
     return (
       <React.Fragment>
@@ -54,11 +76,14 @@ export class TapControl extends React.Component {
           currentTapList={currentTapList}
           onTapSelection={this.handleChangingSelectedTap}
         />
+        <button onClick={this.handleAddItemClick}>Add New Tap</button>
         {currentlyVisibleState}
-        {/* <button onClick={this.handleButtonClick}>{buttonText}</button> */}
+        {/* <button onClick={this.handleButtonClick}>{descriptionButtonText}</button> */}
         {/* My button won't hide here. not sure why */}
         {currentTapList !== null ? (
-          <button onClick={this.handleButtonClick}>{buttonText}</button>
+          <button onClick={this.handleButtonClick}>
+            {descriptionButtonText}
+          </button>
         ) : (
           <h4>Click a tap to see more details</h4>
         )}
