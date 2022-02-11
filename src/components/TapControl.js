@@ -34,12 +34,10 @@ export class TapControl extends React.Component {
   };
 
   handleButtonClick = () => {
-    if (this.state.selectedTap !== null) {
-      this.setState(() => ({
-        formVisibleOnPage: false,
-        selectedTap: null,
-      }));
-    }
+    this.setState(() => ({
+      formVisibleOnPage: false,
+      selectedTap: null,
+    }));
   };
 
   handleAddingNewTapToList = (newTap) => {
@@ -69,6 +67,7 @@ export class TapControl extends React.Component {
       currentlyVisibleState = (
         <NewTapForm onNewTapCreation={this.handleAddingNewTapToList} />
       );
+      descriptionButtonText = "Never mind.";
     }
     return (
       <React.Fragment>
