@@ -2,16 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function TapDetails(props) {
-  // const { tap } = props;
+  const { tap } = props;
   return (
     <React.Fragment>
       <h2>
-        <strong>{props.name}</strong> from {props.brand}
+        <strong>{tap.name}</strong> from {tap.brand}
       </h2>
       <p>
-        <em>{props.alcoholContent}% abv</em>
+        <em>{tap.alcoholContent}% abv</em>
       </p>
-      <p>{props.description}</p>
+      <p>{tap.description}</p>
     </React.Fragment>
   );
 }

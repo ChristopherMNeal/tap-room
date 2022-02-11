@@ -48,6 +48,7 @@ Tap.propTypes = {
   price: PropTypes.number,
   alcoholContent: PropTypes.number,
   beersSold: PropTypes.number,
+  whenTapClicked: PropTypes.func,
 };
 
 export default Tap;
