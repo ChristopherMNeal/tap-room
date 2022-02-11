@@ -2,7 +2,7 @@ import React from "react";
 import TapList from "./TapList";
 import TapDetails from "./TapDetails";
 import NewTapForm from "./NewTapForm";
-// import EditTapForm from "./EditTapForm";
+import EditTapForm from "./EditTapForm";
 
 export class TapControl extends React.Component {
   constructor() {
@@ -23,6 +23,7 @@ export class TapControl extends React.Component {
         },
       ],
       selectedTap: null,
+      editing: false,
     };
   }
 
@@ -30,6 +31,7 @@ export class TapControl extends React.Component {
     this.setState(() => ({
       formVisibleOnPage: true,
       selectedTap: null,
+      editing: false,
     }));
   };
 
@@ -37,7 +39,13 @@ export class TapControl extends React.Component {
     this.setState(() => ({
       formVisibleOnPage: false,
       selectedTap: null,
+      editing: false,
     }));
+  };
+
+  // This needs to go somewhere?
+  handleEditClick = () => {
+    this.setState({ editing: true });
   };
 
   handleAddingNewTapToList = (newTap) => {
@@ -56,12 +64,43 @@ export class TapControl extends React.Component {
     this.setState({ selectedTap: selectedTap });
   };
 
+  handleDeletingTap = (id) => {
+    const newMainTapList = this.state.mainTapList.filter(
+      (tap) => tap.id !== id
+    );
+    this.setState({
+      mainTapList: newMainTapList,
+      selectedTap: null,
+    });
+  };
+
+  handleTapEditingInList = (tapToEdit) => {
+    const editiedMainTapList = this.state.mainTapList
+      .filter((tap) => tap.id !== this.state.selectedTap.id)
+      .concat(tapToEdit);
+    this.setState({ editiedMainTapList, editing: false, selectedTap: null });
+  };
+
   render() {
     const currentTapList = this.state.mainTapList;
     let currentlyVisibleState = null;
     let descriptionButtonText = null;
-    if (this.state.selectedTap !== null) {
-      currentlyVisibleState = <TapDetails tap={this.state.selectedTap} />;
+    if (this.state.editing) {
+      currentlyVisibleState = (
+        <EditTapForm
+          tap={this.state.selectedTap}
+          onEditTap={this.handleTapEditingInList}
+        />
+      );
+      descriptionButtonText = "Don't edit.";
+    } else if (this.state.selectedTap !== null) {
+      currentlyVisibleState = (
+        <TapDetails
+          tap={this.state.selectedTap}
+          onClickingDelete={this.handleDeletingTap}
+          onClickingEdit={this.handleEditClick}
+        />
+      );
       descriptionButtonText = "Hide details";
     } else if (this.state.formVisibleOnPage) {
       currentlyVisibleState = (
