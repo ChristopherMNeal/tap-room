@@ -3,11 +3,15 @@ import Header from "./Header";
 import TapControl from "./TapControl";
 
 function App() {
+  const styles = {
+    backgroundColor: "#6570bc",
+    height: "100vh",
+  };
   return (
-    <React.Fragment>
+    <div style={styles}>
       <Header />
       <TapControl />
-    </React.Fragment>
+    </div>
   );
 }
 
