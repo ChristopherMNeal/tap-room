@@ -74,10 +74,14 @@ export class TapControl extends React.Component {
   };
 
   handleTapEditingInList = (tapToEdit) => {
-    const editiedMainTapList = this.state.mainTapList
+    const editedMainTapList = this.state.mainTapList
       .filter((tap) => tap.id !== this.state.selectedTap.id)
       .concat(tapToEdit);
-    this.setState({ editiedMainTapList, editing: false, selectedTap: null });
+    this.setState({
+      mainTapList: editedMainTapList,
+      editing: false,
+      selectedTap: null,
+    });
   };
 
   render() {
