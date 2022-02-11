@@ -25,6 +25,14 @@ export class TapControl extends React.Component {
     };
   }
 
+  handleButtonClick = () => {
+    if (this.state.selectedTap !== null) {
+      this.setState(() => ({
+        selectedTap: null,
+      }));
+    }
+  };
+
   handleChangingSelectedTap = (id) => {
     const selectedTap = this.state.mainTapList.filter(
       (tap) => tap.id === id
@@ -35,8 +43,10 @@ export class TapControl extends React.Component {
   render() {
     const currentTapList = this.state.mainTapList;
     let currentlyVisibleState = null;
+    let buttonText = null;
     if (this.state.selectedTap !== null) {
       currentlyVisibleState = <TapDetails tap={this.state.selectedTap} />;
+      buttonText = "Hide details";
     }
     return (
       <React.Fragment>
@@ -45,6 +55,13 @@ export class TapControl extends React.Component {
           onTapSelection={this.handleChangingSelectedTap}
         />
         {currentlyVisibleState}
+        {/* <button onClick={this.handleButtonClick}>{buttonText}</button> */}
+        {/* My button won't hide here. not sure why */}
+        {currentTapList !== null ? (
+          <button onClick={this.handleButtonClick}>{buttonText}</button>
+        ) : (
+          <h4>Click a tap to see more details</h4>
+        )}
       </React.Fragment>
     );
   }
