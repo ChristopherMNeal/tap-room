@@ -9,8 +9,8 @@ function NewTapForm(props) {
     props.onNewTapCreation({
       name: event.target.name.value,
       brand: event.target.brand.value,
-      alcoholContent: event.target.alcoholContent.value,
-      price: event.target.price.value,
+      alcoholContent: parseInt(event.target.alcoholContent.value),
+      price: parseInt(event.target.price.value),
       description: event.target.description.value,
       id: v4(),
     });
@@ -19,7 +19,7 @@ function NewTapForm(props) {
     <React.Fragment>
       <ReusableForm
         formSubmissionHandler={handleNewTapFormSubmission}
-        buttonText="Add New Tap"
+        buttonText="Add Tap!"
       />
     </React.Fragment>
   );

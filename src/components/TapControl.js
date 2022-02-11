@@ -27,20 +27,20 @@ export class TapControl extends React.Component {
     };
   }
 
-  handleAddItemClick = () => {
-    this.setState(() => ({
-      formVisibleOnPage: true,
-      selectedTap: null,
-      editing: false,
-    }));
-  };
-
   handleButtonClick = () => {
-    this.setState(() => ({
-      formVisibleOnPage: false,
-      selectedTap: null,
-      editing: false,
-    }));
+    if (this.state.selectedTap !== null || this.state.formVisibleOnPage) {
+      this.setState(() => ({
+        formVisibleOnPage: false,
+        selectedTap: null,
+        editing: false,
+      }));
+    } else {
+      this.setState(() => ({
+        formVisibleOnPage: true,
+        selectedTap: null,
+        editing: false,
+      }));
+    }
   };
 
   // This needs to go somewhere?
@@ -52,8 +52,7 @@ export class TapControl extends React.Component {
     const newMainTapList = this.state.mainTapList.concat(newTap);
     this.setState({
       mainTapList: newMainTapList,
-      // // show new tap details after creation? or show what?
-      // selectedTap: newTap,
+      selectedTap: newTap,
     });
   };
 
@@ -107,6 +106,8 @@ export class TapControl extends React.Component {
         <NewTapForm onNewTapCreation={this.handleAddingNewTapToList} />
       );
       descriptionButtonText = "Never mind.";
+    } else {
+      descriptionButtonText = "Add a New Tap!";
     }
     return (
       <React.Fragment>
@@ -114,17 +115,10 @@ export class TapControl extends React.Component {
           currentTapList={currentTapList}
           onTapSelection={this.handleChangingSelectedTap}
         />
-        <button onClick={this.handleAddItemClick}>Add New Tap</button>
         {currentlyVisibleState}
-        {/* <button onClick={this.handleButtonClick}>{descriptionButtonText}</button> */}
-        {/* My button won't hide here. not sure why */}
-        {currentTapList !== null ? (
-          <button onClick={this.handleButtonClick}>
-            {descriptionButtonText}
-          </button>
-        ) : (
-          <h4>Click a tap to see more details</h4>
-        )}
+        <button onClick={this.handleButtonClick}>
+          {descriptionButtonText}
+        </button>
       </React.Fragment>
     );
   }
