@@ -5,15 +5,16 @@ function Tap(props) {
   return (
     <React.Fragment>
       <h3>
-        {props.name} - {props.brand}
+        {props.brand} <strong>{props.name}</strong>
       </h3>
-      <h4>
+      <p>${props.price} per pint</p>
+      <p>
         <em>{props.alcoholContent}% abv</em>
-      </h4>
+      </p>
       {props.beersSold === 124 ? (
         <p>Sorry! This keg is blown.</p>
       ) : (
-        <p>quantity: {124 - props.beersSold}</p>
+        <p>Remaing pints in keg: {124 - props.beersSold}</p>
       )}
     </React.Fragment>
   );
