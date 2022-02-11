@@ -1,10 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Tap from "./Tap";
 
 function TapList(props) {
-  return <div>TapList</div>;
+  return (
+    <React.Fragment>
+      {props.currentTapList.map((tap) => (
+        <Tap
+          name={tap.name}
+          brand={tap.brand}
+          price={tap.price}
+          alcoholContent={tap.alcoholContent}
+          beersSold={tap.beersSold}
+          id={tap.id}
+          key={tap.id}
+        />
+      ))}
+    </React.Fragment>
+  );
 }
 
-TapList.propTypes = {};
+TapList.propTypes = {
+  tapList: PropTypes.array,
+};
 
 export default TapList;
