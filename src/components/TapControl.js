@@ -1,6 +1,6 @@
 import React from "react";
 import TapList from "./TapList";
-// import TapDetails from "./TapDetails";
+import TapDetails from "./TapDetails";
 // import NewTapForm from "./NewTapForm";
 // import EditTapForm from "./EditTapForm";
 
@@ -21,13 +21,30 @@ export class TapControl extends React.Component {
           key: 4,
         },
       ],
+      selectedTap: null,
     };
   }
+
+  handleChangingSelectedTap = (id) => {
+    const selectedTap = this.state.mainTapList.filter(
+      (tap) => tap.id === id
+    )[0];
+    this.setState({ selectedTap: selectedTap });
+  };
+
   render() {
     const currentTapList = this.state.mainTapList;
+    let currentlyVisibleState = null;
+    if (this.state.selectedTap !== null) {
+      currentlyVisibleState = <TapDetails tap={this.state.selectedTap} />;
+    }
     return (
       <React.Fragment>
-        <TapList currentTapList={currentTapList} />
+        <TapList
+          currentTapList={currentTapList}
+          onTapSelection={this.handleChangingSelectedTap}
+        />
+        {currentlyVisibleState}
       </React.Fragment>
     );
   }

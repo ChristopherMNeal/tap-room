@@ -2,12 +2,31 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function Tap(props) {
+  const styles = {
+    linkStyling: {
+      border: "1 black",
+      // padding: "16px 5px",
+      // hover underline not working
+      cursor: "pointer",
+      "& a": {
+        textDecoration: "none",
+      },
+      "& a:hover": {
+        textDecoration: "underline",
+      },
+    },
+  };
   return (
     <React.Fragment>
-      <h3>
-        {props.brand} <strong>{props.name}</strong>
-      </h3>
-      <p>${props.price} per pint</p>
+      <div
+        style={styles.linkStyling}
+        onClick={() => props.whenTapClicked(props.id)}
+      >
+        <h3>
+          {props.brand} <strong>{props.name}</strong>
+        </h3>
+      </div>
+      <p>$ {props.price} per pint</p>
       <p>
         <em>{props.alcoholContent}% abv</em>
       </p>
@@ -27,6 +46,7 @@ Tap.defaultProps = {
 Tap.propTypes = {
   name: PropTypes.string,
   price: PropTypes.number,
+  alcoholContent: PropTypes.number,
   beersSold: PropTypes.number,
 };
 
