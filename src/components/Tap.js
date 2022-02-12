@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { FaPlus } from "react-icons/fa";
+import { FaMinus } from "react-icons/fa";
 
 function Tap(props) {
   const styles = {
@@ -30,11 +32,15 @@ function Tap(props) {
       <p>
         <em>{props.alcoholContent}% abv</em>
       </p>
-      {props.beersSold === 124 ? (
-        <p>Sorry! This keg is blown.</p>
-      ) : (
-        <p>Remaing pints in keg: {124 - props.beersSold}</p>
-      )}
+      <p>
+        {props.beersSold === 124 ? (
+          <span>Sorry! This keg is blown.</span>
+        ) : (
+          <span>Remaing pints in keg: {124 - props.beersSold}</span>
+        )}
+        <FaMinus style={{ color: "darkgreen", cursor: "pointer" }} />
+        <FaPlus style={{ color: "blue", cursor: "pointer" }} />
+      </p>
     </React.Fragment>
   );
 }

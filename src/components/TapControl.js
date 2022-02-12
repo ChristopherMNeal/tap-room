@@ -24,6 +24,7 @@ export class TapControl extends React.Component {
       ],
       selectedTap: null,
       editing: false,
+      sellBeer: null,
     };
   }
 
@@ -61,6 +62,12 @@ export class TapControl extends React.Component {
       (tap) => tap.id === id
     )[0];
     this.setState({ selectedTap: selectedTap });
+  };
+
+  handleChangingBeersSold = (id) => {
+    console.log("handleChangingBeersSold reached!");
+    const sellBeer = this.state.mainTapList.filter((tap) => tap.id === id)[0];
+    this.setState({ sellBeer: sellBeer });
   };
 
   handleDeletingTap = (id) => {
