@@ -9,9 +9,10 @@ function NewTapForm(props) {
     props.onNewTapCreation({
       name: event.target.name.value,
       brand: event.target.brand.value,
-      alcoholContent: parseInt(event.target.alcoholContent.value),
-      price: parseInt(event.target.price.value),
+      alcoholContent: parseFloat(event.target.alcoholContent.value),
+      price: parseFloat(event.target.price.value),
       description: event.target.description.value,
+      beersSold: parseInt(event.target.beersSold.value),
       id: v4(),
     });
   }

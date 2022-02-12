@@ -9,8 +9,9 @@ function EditTapForm(props) {
     props.onEditTap({
       name: event.target.name.value,
       brand: event.target.brand.value,
-      alcoholContent: parseInt(event.target.alcoholContent.value),
-      price: parseInt(event.target.price.value),
+      alcoholContent: parseFloat(event.target.alcoholContent.value),
+      price: parseFloat(event.target.price.value),
+      beersSold: parseInt(event.target.beersSold.value),
       description: event.target.description.value,
       id: tap.id,
     });

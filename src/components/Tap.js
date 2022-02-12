@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { FaPlus } from "react-icons/fa";
+// import { FaPlus } from "react-icons/fa";
 // import { FaMinus } from "react-icons/fa";
 
 function Tap(props) {
@@ -39,10 +39,10 @@ function Tap(props) {
           <span>Remaing pints in keg: {124 - props.beersSold}</span>
         )}
         {/* <FaMinus style={{ color: "green", cursor: "pointer" }} /> */}
-        <FaPlus
+        {/* <FaPlus
           style={{ color: "blue", cursor: "pointer" }}
           onClick={() => props.whenBeerSold(props.id)}
-        />
+        /> */}
       </p>
     </React.Fragment>
   );
@@ -53,9 +53,9 @@ Tap.defaultProps = {
 };
 
 Tap.propTypes = {
-  name: PropTypes.string,
-  price: PropTypes.number,
-  alcoholContent: PropTypes.number,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  alcoholContent: PropTypes.number.isRequired,
   beersSold: PropTypes.number,
   whenTapClicked: PropTypes.func,
   onChangingBeersSold: PropTypes.func,
