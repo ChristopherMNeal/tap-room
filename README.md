@@ -17,7 +17,7 @@
 
 ## Description
 
-_This project was created for Epicodus bootcamp to show proficiency in React Fundamentals. The application is for a tap room store to list their available kegs on tap with descriptions, prices, and remaining pints. The user has full CRUD functionality on the products._
+_This project was created for Epicodus bootcamp to show proficiency in React Fundamentals. The application is for a tap room store to list their available kegs on tap with descriptions, prices, and remaining pints. The user has full CRUD functionality on the taps._
 
 ## Project Layout Diagram
 

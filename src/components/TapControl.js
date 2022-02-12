@@ -65,9 +65,9 @@ export class TapControl extends React.Component {
   };
 
   handleChangingBeersSold = (id) => {
-    console.log("handleChangingBeersSold reached!");
-    const sellBeer = this.state.mainTapList.filter((tap) => tap.id === id)[0];
-    this.setState({ sellBeer: sellBeer });
+    console.log("handleChangingBeersSold reached!", id);
+    // const sellBeer = this.state.mainTapList.filter((tap) => tap.id === id)[0];
+    // this.setState({ sellBeer: sellBeer });
   };
 
   handleDeletingTap = (id) => {
@@ -125,6 +125,7 @@ export class TapControl extends React.Component {
         <TapList
           currentTapList={currentTapList}
           onTapSelection={this.handleChangingSelectedTap}
+          onChangingBeersSold={this.handleChangingBeersSold}
         />
         {currentlyVisibleState}
         <button onClick={this.handleButtonClick}>

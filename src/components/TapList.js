@@ -15,6 +15,7 @@ function TapList(props) {
           beersSold={tap.beersSold}
           id={tap.id}
           key={tap.id}
+          whenBeerSold={tap.onChangingBeersSold}
         />
       ))}
     </React.Fragment>
@@ -24,6 +25,7 @@ function TapList(props) {
 TapList.propTypes = {
   tapList: PropTypes.array,
   onTapSelection: PropTypes.func,
+  onChangingBeersSold: PropTypes.func,
 };
 
 export default TapList;
