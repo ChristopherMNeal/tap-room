@@ -13,7 +13,7 @@ function ReusableForm(props) {
         <input type="text" name="brand" placeholder="Brand" />
         <br />
 
-        <label htmlFor="alcoholContent">Name:</label>
+        <label htmlFor="alcoholContent">ABV%:</label>
         <input
           type="number"
           name="alcoholContent"
@@ -33,6 +33,7 @@ function ReusableForm(props) {
           name="beersSold"
           placeholder="0"
           min="0"
+          max="124"
           step="1"
         />
         <br />
