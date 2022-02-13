@@ -24,7 +24,6 @@ export class TapControl extends React.Component {
       ],
       selectedTap: null,
       editing: false,
-      // sellBeer: null,
     };
   }
 
@@ -44,7 +43,6 @@ export class TapControl extends React.Component {
     }
   };
 
-  // This needs to go somewhere?
   handleEditClick = () => {
     this.setState({ editing: true });
   };
@@ -64,11 +62,17 @@ export class TapControl extends React.Component {
     this.setState({ selectedTap: selectedTap });
   };
 
-  // handleChangingBeersSold = (id) => {
-  //   console.log("handleChangingBeersSold reached!", id);
-  //   // const sellBeer = this.state.mainTapList.filter((tap) => tap.id === id)[0];
-  //   // this.setState({ sellBeer: sellBeer });
-  // };
+  handleChangingBeersSold = (id) => {
+    let soldTap = this.state.mainTapList.filter((tap) => tap.id === id)[0];
+    console.log(soldTap);
+    soldTap.beersSold++;
+    console.log(soldTap);
+    this.setState({
+      mainTapList: this.state.mainTapList
+        .filter((tap) => tap.id !== id)
+        .concat(soldTap),
+    });
+  };
 
   handleDeletingTap = (id) => {
     const newMainTapList = this.state.mainTapList.filter(
@@ -125,7 +129,7 @@ export class TapControl extends React.Component {
         <TapList
           currentTapList={currentTapList}
           onTapSelection={this.handleChangingSelectedTap}
-          // onChangingBeersSold={this.handleChangingBeersSold}
+          onChangingBeersSold={this.handleChangingBeersSold}
         />
         {currentlyVisibleState}
         <button onClick={this.handleButtonClick}>
