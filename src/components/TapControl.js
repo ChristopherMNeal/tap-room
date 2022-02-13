@@ -62,11 +62,9 @@ export class TapControl extends React.Component {
     this.setState({ selectedTap: selectedTap });
   };
 
-  handleChangingBeersSold = (id) => {
+  handleChangingBeersSold = (id, drinksNumber) => {
     let soldTap = this.state.mainTapList.filter((tap) => tap.id === id)[0];
-    console.log(soldTap);
-    soldTap.beersSold++;
-    console.log(soldTap);
+    soldTap.beersSold += drinksNumber;
     this.setState({
       mainTapList: this.state.mainTapList
         .filter((tap) => tap.id !== id)

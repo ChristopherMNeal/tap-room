@@ -28,21 +28,36 @@ function Tap(props) {
           {props.brand} <strong>{props.name}</strong>
         </h3>
       </div>
-      <p>$ {props.price} per pint</p>
+      <p>{props.price} dollars per pint</p>
       <p>
         <em>{props.alcoholContent}% abv</em>
       </p>
       <p>
-        {props.beersSold === 124 ? (
+        {props.beersSold >= 124 ? (
           <span>Sorry! This keg is blown.</span>
         ) : (
-          <span>Remaing pints in keg: {124 - props.beersSold}</span>
+          <span>
+            Remaing pints in keg: {124 - props.beersSold}
+            <br />
+            Sell a pint:
+            <FaPlus
+              style={{ color: "blue", cursor: "pointer" }}
+              onClick={() => props.whenBeerSold(props.id, 1)}
+            />
+          </span>
+        )}
+        {props.beersSold >= 120 ? (
+          <span></span>
+        ) : (
+          <span>
+            Sell a pitcher:
+            <FaPlus
+              style={{ color: "blue", cursor: "pointer" }}
+              onClick={() => props.whenBeerSold(props.id, 4)}
+            />
+          </span>
         )}
         {/* <FaMinus style={{ color: "green", cursor: "pointer" }} /> */}
-        <FaPlus
-          style={{ color: "blue", cursor: "pointer" }}
-          onClick={() => props.whenBeerSold(props.id)}
-        />
       </p>
     </React.Fragment>
   );
